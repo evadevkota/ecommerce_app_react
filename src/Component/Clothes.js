@@ -27,7 +27,6 @@ function Clothes(props) {
 
   return (
     <div>
-
       <div className="row">
         {data.map((products) => {
           return (

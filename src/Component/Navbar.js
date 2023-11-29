@@ -55,7 +55,7 @@ export default function Navbar(props) {
             </label>
           </div>
 
-          <i class="fa-solid fa-cart-shopping mx-4"style={{color:"white"}}></i> 
+          <i className="fa-solid fa-cart-shopping mx-4" style={{color:"white", fontSize:"14px"}}>Cart</i> 
         </div>
         
       </div>
