@@ -1,33 +1,53 @@
 import React, { useState, useEffect } from "react";
 import ClothItem from "./ClothItem";
+import { useNavigate } from "react-router-dom";
+import Spinner from "./Spinner";
 
 // import PropTypes from 'prop-types'
 function Clothes(props) {
+  let navigate = useNavigate();
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        props.setProgress(10);
+        setLoading(true);
+
         const response = await fetch("https://fakestoreapi.com/products");
+
+        props.setProgress(20);
+
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
+
         const jsonData = await response.json();
+
+        props.setProgress(30);
         setData(jsonData);
+        props.setProgress(100);
         console.log(jsonData);
       } catch (error) {
         console.error("Error fetching data:", error);
+      } finally {
+        setLoading(false); // Ensure loading is set to false even in case of an error
       }
     };
 
-    fetchData();
-
-    // Include props in the dependency array if it's being used inside the effect
-  }, [props]);
+    if (localStorage.getItem("token")) {
+      fetchData();
+    } else {
+      navigate("/login");
+    }
+  }, []); // Dependency array is empty, so this effect runs only once when the component mounts
 
   return (
     <div>
       <div className="row">
+        {loading && <Spinner />}
+
         {data.map((products) => {
           return (
             <div className="col-md-4" key={products.id}>

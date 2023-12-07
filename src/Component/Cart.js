@@ -1,23 +1,26 @@
 import React from 'react'
 
-function Cart() {
+function Cart(props) {
+ 
+  
+  
   return (
-    <div>
-      <p className="d-inline-flex gap-1">
-  <a className="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-    Link with href
-  </a>
-  <button className="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-    Button with data-bs-target
-  </button>
-</p>
-<div className="collapse" id="collapseExample">
-  <div className="card card-body">
-    Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
-  </div>
-</div>
+   <div class = "Container">
+      
+        <div class="container">
+            <div id="root"></div>
+            <div class="sidebar">
+                <div class="head"><p>My Cart</p></div>
+                <div id="cartItem">Your cart is empty</div>
+                <div class="foot">
+                    <h3>Total</h3>
+                    <h2 id="total">{props.price}</h2>
+                </div>
+            </div>
+        </div>
     </div>
   )
-}
+
+  }
 
 export default Cart

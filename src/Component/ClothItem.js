@@ -1,11 +1,15 @@
 
 import { React } from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import Cart from "./Cart";
 
 function ClothItem(props) {
   let { title, description, price, image, category } = props;
+  let navigate = useNavigate();
   const AddToCart=()=>{
-  
+    <Cart price={price}></Cart>
+    navigate("/cart");
+
   }
   
 

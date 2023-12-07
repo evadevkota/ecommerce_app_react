@@ -1,64 +1,39 @@
+// Navbar.js
+
 import React from "react";
-import { Link } from "react-router-dom";
-import '@fortawesome/fontawesome-free/css/all.css';
+import { Link, useNavigate } from "react-router-dom";
 
+const Navbar = ({  onLogout }) => {
+  const navigate = useNavigate();
 
-export default function Navbar(props) {
+  const handleLogout = () => {
+    // Perform any necessary logout actions
+    onLogout();
+    // Navigate to the login page
+    navigate("/login");
+  };
+
   return (
-    <nav className={`navbar navbar-expand-lg navbar-dark bg-dark`}>
-      <div className="container-fluid">
-        <Link className="navbar-brand" to="/">
-          Pahiran
+    <nav className="navbar navbar-dark bg-dark">
+    
+    <div class="container-fluid">
+    <Link to="/home" className="navbar-brand">
+        My Clothing
+      </Link>
+  
+  
+    <Link to="/cart" className="navbar-brand ms-auto">
+          Cart
         </Link>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button className="btn btn-outline-light mx-2" onClick={handleLogout}>
+          Logout
         </button>
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <Link className="nav-link" aria-current="page" to="/">
-                Home
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/about"></Link>
-            </li>
-          </ul>
-          
-          <div
-            className={`form-check form-switch text-${
-              props.mode === "light" ? "dark" : "light"
-            }`}
-          >
-            
-            <input
-              className="form-check-input"
-              onClick={props.toggleMode}
-              type="checkbox"
-              id="flexSwitchCheckDefault"
-            />
-            <label
-              className={`form-check-label  text-${
-                props.mode === "light" ? "dark" : "light"
-              }`}
-              htmlFor="flexSwitchCheckDefault"
-            >
-              Enable Lightmode
-            </label>
-          </div>
-
-          <i className="fa-solid fa-cart-shopping mx-4" style={{color:"white", fontSize:"14px"}}>Cart</i> 
-        </div>
-        
-      </div>
-    </nav>
+    </button>
+    </div>
+  </nav>
+  
   );
-}
+};
+
+export default Navbar;
